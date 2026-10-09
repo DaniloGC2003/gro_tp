@@ -1,0 +1,21 @@
+from heuristiques import *
+from util_tp2 import *
+
+c, A, b = pbsac1()
+heuristique(c, A, b)
+c, A, b = pbsac2()
+heuristique(c, A, b)
+c, A, b = pbsac3()
+heuristique(c, A, b)
+c, A, b = pbsac4()
+heuristique(c, A, b)
+c, A, b = pbsac5()
+heuristique(c, A, b)
+c, A, b = pbsac6()
+heuristique(c, A, b)
+c, A, b = pbsac7()
+heuristique(c, A, b)
+c, A, b = pbsac8()
+heuristique(c, A, b)
+c, A, b = pbsac9()
+heuristique(c, A, b)
