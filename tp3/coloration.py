@@ -11,9 +11,7 @@ def degmax(G):
     """
     max = 0
     for i in G:
-        count = 0
-        for j in G[i]:
-            count += 1
+        count = len(G[i])
         if count > max:
             max = count
     return max
@@ -26,7 +24,8 @@ def heuristique_coloration(G):
     # on enlève la coloration éventuelle
     for i in G:
         if "col" in G[i].attr:
-            del(G[i].attr["col"])        
+            del(G[i].attr["col"])
+
     # à compléter à partir après cette ligne
     max_colors = degmax(G) + 1
     global_colors_used = []

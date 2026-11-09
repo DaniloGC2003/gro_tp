@@ -48,6 +48,9 @@ def sol_heuristique(S,t):
     usb_sticks_storage = []
     # tri des fichiers (calcul des indices inds de sorte que t[inds[0]] <= t[inds[1]] <= ... t[inds[n-1]]
     inds = np.argsort(t)
+    # petit test
+    if t[inds[n-1]] > S :
+        raise RuntimeError("La taille des cl´es est inf´erieure au plus gros fichier !")
     print(f"inds: {inds}")
     for file in reversed(inds):
         #print(file)
@@ -64,6 +67,29 @@ def sol_heuristique(S,t):
             #print(usb_sticks_storage)
     return m
 
+def sol_heuristique_new(S,t):
+    n = len(t)
+    # tri des fichiers (calcul des indices inds de sorte que t[inds[0]] <= t[inds[1]] <= ... t[inds[n-1]]
+    inds = np.argsort(t)
     # petit test
     if t[inds[n-1]] > S :
         raise RuntimeError("La taille des cl´es est inf´erieure au plus gros fichier !")
+    usb_sticks = []
+    for file_index in reversed(inds):
+        print(f"checking index {file_index}")
+        file_stored = False
+        for stick in usb_sticks:
+            # sum all files inside this stick
+            sum_files_in_stick = 0
+            for file in stick:
+                sum_files_in_stick += t[file]
+            if S - sum_files_in_stick >= t[file_index]:
+                file_stored = True
+                stick.append(file_index)
+                print("appending stick")
+                break
+        if not file_stored:
+            print(f"creating new stick")
+            usb_sticks.append([file_index])
+    print(usb_sticks)
+    return usb_sticks

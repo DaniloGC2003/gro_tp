@@ -2,7 +2,7 @@
 
 from util_tp2 import TreeNodePSE
 from heapq import heappush, heappop
-#import pdb # en cas de besoin de "debug"
+import pdb # en cas de besoin de "debug"
 
 def solveur_pse_bin(c, A, b, xh, Fh) :
     """  solveur PNLE en variable binaire
@@ -32,7 +32,7 @@ def solveur_pse_bin(c, A, b, xh, Fh) :
     T = []
     heappush(T,S)
 
-#    pdb.set_trace()  # à décommenter pour débug
+    pdb.set_trace()  # à décommenter pour débug
 
     while len(T) > 0 :
         N = heappop(T)
