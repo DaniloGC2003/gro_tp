@@ -61,8 +61,8 @@ def mat_A(G, m):
     jj = np.empty(nb_elts, dtype=np.int32)
     val = np.empty(nb_elts, dtype=np.int32)
 
-    ligne = 0
-    pos = 0
+    ligne = 0 # line of current inequality
+    pos = 0 # position in the sparse matrix
     for i in G:
         for k in G[i]:
             if i < k:  # chaque arête est traitée une seule fois
@@ -128,9 +128,8 @@ def PL_coloration(G, m, with_gurobi_output=False):
     c = np.zeros(n*m)
     c = np.concatenate((c, np.ones(m)))
     A = mat_A(G, m)
-    zero_arr = np.zeros(G.nb_aretes() * m)
     PL_col.setObjective(c @ x, gp.GRB.MINIMIZE)
-    PL_col.addConstr(A @ x <= zero_arr)
+    PL_col.addConstr(A @ x <= 0)
     B = mat_B(m, n)
     b = np.ones(n)
     PL_col.addConstr(B @ x[:n*m] == b) # this constraint does not concern the last y_j variables
